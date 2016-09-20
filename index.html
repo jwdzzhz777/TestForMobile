@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="fullPage/jquery.fullPage.css" type="text/css">
+		<link rel="stylesheet" href="jquery-ui/jquery-ui.min.css" type="text/css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+		<title>fullpage</title>
+		<style media="screen">
+			.section{
+				font-size: 60px;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript" src="jq/jquery.js"></script>
+		<script type="text/javascript" src="fullPage/jquery.fullPage.js"></script>
+		<script type="text/javascript" src="jquery-ui/jquery-ui.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				$('#fullpage').fullpage({
+					verticalCentered: true,//内容是否垂直居中
+					sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#ccddff'],//背景颜色
+					anchors:['firstPage', 'secondPage', 'thirdPage','forthPage'],//路由名字
+					afterRender:function(){
+						console.log($(this).find('#draggable'));//
+					},
+					afterLoad: function(anchorLink, index){
+						if(anchorLink == 'firstPage'){
+							$(this).find('#oneimg').show('slow');
+						}
+					},
+					onLeave: function(index, nextIndex, direction){
+						if(index == 1){
+							$(this).find('#oneimg').hide();
+						}
+					}
+				});
+			});
+		</script>
+		<div id="fullpage" style="">
+		    <div class="section" id="page1">
+				<h1>fullPage.js</h1>
+				<img id='oneimg' data-src="img/img001.jpg" alt="img001" style="display:none;height:200px;width:200px;position:absolute;left:700px;top:700px;"/>
+			</div>
+			<div class="section active" id="page2">
+				<div class="slide" data-anchor="slide1"> Slide 1 </div>
+			    <div class="slide" data-anchor="slide2"> Slide 2 </div>
+			    <div class="slide" data-anchor="slide3"> Slide 3 </div>
+			    <div class="slide" data-anchor="slide4"> Slide 4 </div>
+			</div>
+		    <div class="section" id="page3">thirdPage</div>
+		    <div class="section" id="page4">forthPage</div>
+		</div>
+	</body>
+</html>

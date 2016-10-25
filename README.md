@@ -1,2 +1,0 @@
-# TestForMobile
-test for mobile
